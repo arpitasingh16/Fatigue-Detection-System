@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Blinking Tracking for Fatigue Detection</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #fec5bb;
+        }
+        #video {
+            margin-top: 20px;
+            border: 2px solid black;
+            width:47.5%;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        #startButton {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #stopButton {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eye Blinking Tracking for Fatigue Detection</h1>
+    <button id="startButton" onclick="startCamera()">Start Camera</button>
+    <button id="stopButton" onclick="stopCamera()" style="display: none;">Stop Camera</button>
+    <div id="video">
+        <img id="videoFeed" src="" alt="Camera Feed">
+    </div>
+    <script>
+        function startCamera() {
+            fetch('/start_camera', { method: 'POST' })
+                .then(() => {
+                    document.getElementById('videoFeed').src = '/video_feed';
+                    document.getElementById('startButton').style.display = 'none';
+                    document.getElementById('stopButton').style.display = 'inline-block';
+                });
+        }
+        function stopCamera() {
+            fetch('/stop_camera', { method: 'POST' })
+                .then(() => {
+                    document.getElementById('videoFeed').src = '';
+                    document.getElementById('startButton').style.display = 'inline-block';
+                    document.getElementById('stopButton').style.display = 'none';
+                });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Blinking Tracking for Fatigue Detection</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #fec5bb;
+        }
+        #video {
+            border: 2px solid black;
+            width: 47.5%;
+            margin-top: 20px;
+        }
+        #startButton, #stopButton {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #stopButton {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1><b>Eye Blinking Tracking for Fatigue Detection</b></h1>
+    <br>
+    <button id="startButton" onclick="startCamera()">Start</button>
+    <button id="stopButton" onclick="stopCamera()" style="display:none;">Stop</button>
+    
+    <div id="video">
+        <img id="videoFeed" src="" width="640" height="480">
+    </div>
+
+    <script>
+        function startCamera() {
+            fetch('/start_camera', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('videoFeed').src = '/video_feed';
+                        document.getElementById('startButton').style.display = 'none';
+                        document.getElementById('stopButton').style.display = 'inline-block';
+                    }
+                });
+        }
+
+        function stopCamera() {
+            fetch('/stop_camera', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('videoFeed').src = '';
+                        document.getElementById('startButton').style.display = 'inline-block';
+                        document.getElementById('stopButton').style.display = 'none';
+                    }
+                });
+        }
+    </script>
+</body>
+</html>
+ 
