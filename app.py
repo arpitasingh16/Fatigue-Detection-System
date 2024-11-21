@@ -109,7 +109,10 @@ from flask import Flask, render_template, Response
 import cv2
 import numpy as np
 import tensorflow as tf
-import winsound  # For playing a beep sound (Windows only)
+# import winsound  # For playing a beep sound (Windows only)
+from playsound import playsound
+ # Replace with your sound file
+
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -178,7 +181,8 @@ def process_frame(frame):
 
         # Trigger alarm if sleepy threshold is reached
         if sleepy_count >= sleepy_threshold and not alarm_triggered:
-            winsound.Beep(1000, 1000)  # Beep sound (frequency 1000Hz, duration 1000ms)
+            playsound('alarm.wav')  # Replace with your sound file
+            # winsound.Beep(1000, 1000)  # Beep sound (frequency 1000Hz, duration 1000ms)
             alarm_triggered = True  # Set alarm triggered flag
             sleepy_count = 0  # Reset sleepy count after alarm
 
