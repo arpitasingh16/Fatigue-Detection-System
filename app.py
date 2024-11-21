@@ -110,7 +110,7 @@ import cv2
 import numpy as np
 import tensorflow as tf
 # import winsound  # For playing a beep sound (Windows only)
-from playsound import playsound
+# from playsound import playsound
  # Replace with your sound file
 
 
@@ -179,12 +179,12 @@ def process_frame(frame):
             status = "Sleepy"
             sleepy_count += 1
 
-        # Trigger alarm if sleepy threshold is reached
-        if sleepy_count >= sleepy_threshold and not alarm_triggered:
-            playsound('alarm.wav')  # Replace with your sound file
-            # winsound.Beep(1000, 1000)  # Beep sound (frequency 1000Hz, duration 1000ms)
-            alarm_triggered = True  # Set alarm triggered flag
-            sleepy_count = 0  # Reset sleepy count after alarm
+        # # Trigger alarm if sleepy threshold is reached
+        # if sleepy_count >= sleepy_threshold and not alarm_triggered:
+        #     playsound('alarm.wav')  # Replace with your sound file
+        #     # winsound.Beep(1000, 1000)  # Beep sound (frequency 1000Hz, duration 1000ms)
+        #     alarm_triggered = True  # Set alarm triggered flag
+        #     sleepy_count = 0  # Reset sleepy count after alarm
 
         # Draw rectangle around the face
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
